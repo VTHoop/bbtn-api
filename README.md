@@ -4,6 +4,8 @@ This project is intended to be a "knock-off" of the Reddit game, Baseball by the
 
 It is in its very infant stages and only allows a Game to be created with subsequent "At-Bats" to play the game.
 
+It requires an instance of Pymongo to be running at `localhost:27017`
+
 Further enhancements could include:
 
 - [ ] Player Creation
