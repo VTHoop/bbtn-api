@@ -6,8 +6,8 @@ It is in its very infant stages and only allows a Game to be created with subseq
 
 Further enhancements could include:
 
-[ ] Player Creation
-[ ] Team Roster Creation
-[ ] Team Standings
-[ ] Event Log of all At-Bats to allow game replays and stat construction
-[ ] Tracking actual players (not true/false) around bases for run-scoring statistics
+- [ ] Player Creation
+- [ ] Team Roster Creation
+- [ ] Team Standings
+- [ ] Event Log of all At-Bats to allow game replays and stat construction
+- [ ] Tracking actual players (not true/false) around bases for run-scoring statistics
