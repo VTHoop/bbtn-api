@@ -54,7 +54,7 @@ class Game(BaseModel):
             self.field[1] = True if self.field[2] else False
             self.field[2] = True
         else:
-            if pitch == AtBatResult.SINGLE:
+            if pitch == AtBatResult.SINGLE or pitch == AtBatResult.INFIELD_SINGLE:
                 self.addRuns(self.calculateRunsBattedIn(self.field, 1))
                 self.field[2], self.field[1], self.field[0] = (
                     True,

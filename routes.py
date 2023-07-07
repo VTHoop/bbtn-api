@@ -47,11 +47,14 @@ def find_game(id: str, request: Request):
     response_model=Game,
 )
 def initiate_at_bat(id: str, request: Request, at_bat_body: AtBatRequest = Body(...)):
+    # will build this with entire pitcher and batter objects being passed in. will eventually store the players in the db and retreive them here
     if (game := request.app.database["games"].find_one({"_id": id})) is not None:
         game = Game(**game)
         at_bat = AtBat(
             batter_guess=at_bat_body.batterGuess,
             pitcher_guess=at_bat_body.pitcherGuess,
+            batter=at_bat_body.batter,
+            pitcher=at_bat_body.pitcher,
         )
         at_bat_result = at_bat.pitch()
         game = game.updateGameAfterPitch(at_bat_result)
@@ -64,6 +67,7 @@ def initiate_at_bat(id: str, request: Request, at_bat_body: AtBatRequest = Body(
             existing_game := request.app.database["games"].find_one({"_id": id})
         ) is not None:
             return existing_game
+        return game
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND, detail=f"Game with ID {id} not found"
     )

@@ -5,11 +5,9 @@ from models.game.game import Game
 from models.player.batter import Batter
 from models.player.pitcher import Pitcher
 from models.team.team import Team
-from models.field.field import Field
 
 from flask import request
 
-# def create_app():
 app = Flask(__name__)
 client = MongoClient("localhost", 27017)
 app.db = client.bbtn
