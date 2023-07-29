@@ -1,3 +1,4 @@
+from typing import Optional
 import uuid
 from pydantic import BaseModel, Field
 
@@ -7,3 +8,4 @@ class Player(BaseModel):
     name: str = Field(...)
     number: int = Field(...)
     position: str = Field(...)
+    team: Optional[str]

@@ -64,7 +64,7 @@ class AtBat(BaseModel):
     @staticmethod
     def __rangeBuilder(batter: Batter, pitcher: Pitcher):
         ARRAY_SHIFT = 4  # probability lists are zero indexed while pitcher batter comparisons range from -4 to 4
-        hrRangeTop = hrProb[batter.power - pitcher.velocity + ARRAY_SHIFT] - 1
+        hrRangeTop = hrProb[batter.power - pitcher.velocity + ARRAY_SHIFT]
         tripleRangeTop = (
             hrRangeTop + tripleProb[batter.speed - pitcher.awareness + ARRAY_SHIFT]
         )
@@ -72,7 +72,7 @@ class AtBat(BaseModel):
             tripleRangeTop + doubleProb[batter.speed - pitcher.awareness + ARRAY_SHIFT]
         )
         singleRangeTop = (
-            hitProb[batter.contact - pitcher.movement + ARRAY_SHIFT] + 5 - 1
+            hitProb[batter.contact - pitcher.movement + ARRAY_SHIFT] + 5
         )  # need to figure out why they added 5
         infieldSingleRangeTop = (
             singleRangeTop
@@ -102,14 +102,12 @@ class AtBat(BaseModel):
 
         return {
             range(0, hrRangeTop): AtBatResult.HOMERUN,
-            range(hrRangeTop + 1, tripleRangeTop): AtBatResult.TRIPLE,
-            range(tripleRangeTop + 1, doubleRangeTop): AtBatResult.DOUBLE,
-            range(doubleRangeTop + 1, singleRangeTop): AtBatResult.SINGLE,
-            range(
-                singleRangeTop + 1, infieldSingleRangeTop
-            ): AtBatResult.INFIELD_SINGLE,
-            range(infieldSingleRangeTop + 1, walkRangeTop): AtBatResult.WALK,
-            range(walkRangeTop + 1, 500): AtBatResult.OUT
+            range(hrRangeTop, tripleRangeTop): AtBatResult.TRIPLE,
+            range(tripleRangeTop, doubleRangeTop): AtBatResult.DOUBLE,
+            range(doubleRangeTop, singleRangeTop): AtBatResult.SINGLE,
+            range(singleRangeTop, infieldSingleRangeTop): AtBatResult.INFIELD_SINGLE,
+            range(infieldSingleRangeTop, walkRangeTop): AtBatResult.WALK,
+            range(walkRangeTop, 501): AtBatResult.OUT
             # range(walkRangeTop + 1, flyOutRangeTop): AtBatResult.FLYOUT,
             # range(flyOutRangeTop + 1, popOutRangeTop): AtBatResult.POPOUT,
             # range(popOutRangeTop + 1, gbOutRangeTop): AtBatResult.GROUNDOUT,

@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import List
 import uuid
 
@@ -12,3 +13,4 @@ class Team(BaseModel):
     lineup: List[Batter] = Field(...)
     pitcher: Pitcher = Field(...)
     at_bat: int = 0
+    is_human: bool  # will currently only support one team being true and one team being false. will change this feature next

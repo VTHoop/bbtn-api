@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from dotenv import dotenv_values
 from pymongo import MongoClient
-from routes import router
+from routers import games, players
 
 config = dotenv_values(".env")
 
@@ -35,4 +35,5 @@ def shutdown_db_client():
     app.mongodb_client.close()
 
 
-app.include_router(router, tags=["games"], prefix="/games")
+app.include_router(games.router, tags=["games"], prefix="/games")
+app.include_router(players.router, tags=["players"])
